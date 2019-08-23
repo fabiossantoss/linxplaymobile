@@ -3,6 +3,7 @@ import React from 'react';
 import Onboarding from 'react-native-onboarding-swiper';
 
 import {BoardImage} from './styles';
+import Svg from 'react-native-svg';
 
 function Onboard({navigation}) {
   function login() {
@@ -10,6 +11,7 @@ function Onboard({navigation}) {
   }
 
   return (
+    <View>
     <Onboarding
       nextLabel="Próximo"
       skipLabel="Pular"

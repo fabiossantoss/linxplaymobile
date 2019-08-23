@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import Svg from 'react-native-svg';
 // import QRCodeScanner from 'react-native-qrcode-scanner';
 import QrCode from '../../components/QrCode';
 
@@ -40,9 +40,13 @@ function Login() {
         <Icon />
         <Text>acessar sua conta</Text>
       </AccessButton>
-      {readQrCode && <QrCode onRead={e => onSuccess(e)} />}
+      {readQrCode && <QrCode onSuccess={onSuccess} />}
     </Container>
   );
 }
+
+Login.navigationOptions = {
+  header: null,
+};
 
 export default Login;
