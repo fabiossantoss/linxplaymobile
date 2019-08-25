@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import Svg from 'react-native-svg';
-// import QRCodeScanner from 'react-native-qrcode-scanner';
 import QrCode from '../../components/QrCode';
+import RNCameraBarcode from '../../components/RNCameraBarcode';
+
+import {StatusBar} from 'react-native';
 
 import {
   Container,
@@ -15,32 +16,41 @@ import {
   Text,
 } from './styles';
 
-function Login() {
+function Login({navigation}) {
   const [readQrCode, setReadQrCode] = useState(false);
 
-  function onSuccess(e) {
-    alert(e.data);
+  const [rnCamera, setRNCamera] = useState(false);
+
+  function setRead() {
+    setRNCamera(false);
+    navigation.navigate('QrCode');
+  }
+
+  function setRnCamera() {
     setReadQrCode(false);
+    setRNCamera(true);
   }
 
   return (
     <Container>
+      {readQrCode && <StatusBar barStyle="light-content" />}
       <Content>
         <Title>LinxPlay</Title>
         <SubTitle>
           Lorem ipsum is placeholder text commonly used in the graphic, print.
         </SubTitle>
       </Content>
-      <QrCodeButton onPress={() => setReadQrCode(true)}>
+      <QrCodeButton onPress={setRead}>
         <Icon />
-        <Text>escanear qrcode</Text>
+        <Text>React Native QRCode Scanner</Text>
       </QrCodeButton>
       <Separator />
-      <AccessButton>
+      <AccessButton onPress={setRNCamera}>
         <Icon />
-        <Text>acessar sua conta</Text>
+        <Text>React Native Camera</Text>
       </AccessButton>
-      {readQrCode && <QrCode onSuccess={onSuccess} />}
+      {/* {readQrCode && <QrCode onSuccess={onSuccess} />}
+      {rnCamera && <RNCameraBarcode visible={rnCamera} />} */}
     </Container>
   );
 }
